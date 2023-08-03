@@ -50,3 +50,9 @@ crate_repositories()
 # generating the list of dependencies, src files etc with command:
 #
 # bazel query //crates/greeter/greeter:greeter_bin  --output=build 
+
+
+# WARNING:
+# in case of a rust binary crate that has some internal modules,
+# add a lib.rs file to build the rust_library then make the rust_binary
+# depend on the lib or bazel FAILS.
