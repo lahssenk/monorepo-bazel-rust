@@ -18,7 +18,7 @@ rust_library(
 
 rust_test(
     name = "greeter_grpc_unit_test",
-    crate = ":greeter_lib",
+    crate = ":greeter_grpc_lib",
     aliases = aliases(
         normal_dev = True,
         proc_macro_dev = True,
