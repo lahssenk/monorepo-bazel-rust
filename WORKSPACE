@@ -41,3 +41,6 @@ load("@cargo_workspace//:defs.bzl", "crate_repositories")
 # dowload all external dependencies read from Cargo workspace
 crate_repositories()
 
+# when external dependencies are added or new crates created
+# run the following command to update the Cargo.Bazel.lock
+# CARGO_BAZEL_REPIN=1 bazel sync --only=cargo_workspace
