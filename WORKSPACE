@@ -42,5 +42,11 @@ load("@cargo_workspace//:defs.bzl", "crate_repositories")
 crate_repositories()
 
 # when external dependencies are added or new crates created
-# run the following command to update the Cargo.Bazel.lock
+# update the Cargo.Bazel.lock with command:
+#
 # CARGO_BAZEL_REPIN=1 bazel sync --only=cargo_workspace
+
+# inspect the result of a BUILD.bazel rust target when crates_universe is used for
+# generating the list of dependencies, src files etc with command:
+#
+# bazel query //crates/greeter/greeter:greeter_bin  --output=build 
