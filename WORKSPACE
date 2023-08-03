@@ -56,3 +56,9 @@ crate_repositories()
 # in case of a rust binary crate that has some internal modules,
 # add a lib.rs file to build the rust_library then make the rust_binary
 # depend on the lib or bazel FAILS.
+
+# release mode BUILDS:
+#
+# bazel build -c opt //...
+# instead of
+# bazel build //...
