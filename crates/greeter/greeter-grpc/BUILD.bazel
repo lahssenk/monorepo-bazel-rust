@@ -3,6 +3,9 @@ load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
     name = "greeter_grpc_lib",
+    srcs = glob([
+        "src/**/*.rs",
+    ]),
     aliases = aliases(),
     deps = all_crate_deps(
         normal = True,
@@ -10,11 +13,12 @@ rust_library(
     proc_macro_deps = all_crate_deps(
         proc_macro = True,
     ),
+    visibility = ["//visibility:public"],
 )
 
 rust_test(
     name = "greeter_grpc_unit_test",
-    crate = ":lib",
+    crate = ":greeter_lib",
     aliases = aliases(
         normal_dev = True,
         proc_macro_dev = True,
@@ -25,4 +29,18 @@ rust_test(
     proc_macro_deps = all_crate_deps(
         proc_macro_dev = True,
     ),
+)
+
+# This tells bazel to load the rust_binary rule from the rules_rust package
+load("@rules_rust//rust:defs.bzl", "rust_binary")
+
+rust_binary(
+    #We are going to call the target/binary summation
+    name = "greeter_grpc_bin",
+    #The list of src files it needs (just main.rs)
+    srcs = ["src/main.rs"],
+    #Any libraries/crates it depends on, for now we'll leave this blank
+    deps = [":greeter_grpc_lib"],
+    #The crate_root file, this would default to main.rs but we put it in for clarity
+    crate_root = "src/main.rs",
 )
