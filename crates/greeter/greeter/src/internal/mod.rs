@@ -1,4 +1,4 @@
-pub fn do_something() {
+pub fn print() {
     println!("hello from greeter/internal");
 }
 
@@ -8,6 +8,6 @@ mod tests {
 
     #[test]
     fn should_pass() {
-        do_something();
+        print();
     }
 }
