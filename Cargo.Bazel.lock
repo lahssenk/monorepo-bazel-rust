@@ -1,12 +1,22 @@
 {
-  "checksum": "ad1c970ff6c4d56c6e46dfc2d762870b56192abc0258b4d5d455046b267f80ad",
+  "checksum": "a717ef3fb9a322c779109049927b057f213a766b81dd59091c1e4f7d9e082914",
   "crates": {
     "greeter 0.1.0": {
       "name": "greeter",
       "version": "0.1.0",
       "repository": null,
-      "targets": [],
-      "library_target_name": null,
+      "targets": [
+        {
+          "Library": {
+            "crate_name": "greeter",
+            "crate_root": "src/lib.rs",
+            "srcs": [
+              "**/*.rs"
+            ]
+          }
+        }
+      ],
+      "library_target_name": "greeter",
       "common_attrs": {
         "compile_data_glob": [
           "**"

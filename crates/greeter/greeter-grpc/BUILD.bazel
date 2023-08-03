@@ -7,7 +7,7 @@ rust_library(
         "src/**/*.rs",
     ]),
     aliases = aliases(),
-    deps = all_crate_deps(
+    deps = ["//crates/greeter/greeter:greeter_lib"] + all_crate_deps(
         normal = True,
     ),
     proc_macro_deps = all_crate_deps(
@@ -23,7 +23,7 @@ rust_test(
         normal_dev = True,
         proc_macro_dev = True,
     ),
-    deps = all_crate_deps(
+    deps = ["//crates/greeter/greeter:greeter_lib"] + all_crate_deps(
         normal_dev = True,
     ),
     proc_macro_deps = all_crate_deps(
