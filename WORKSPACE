@@ -29,7 +29,11 @@ crates_repository(
     name = "cargo_workspace",
     cargo_lockfile = "//:Cargo.lock",
     lockfile = "//:Cargo.Bazel.lock",
-    manifests = ["//:Cargo.toml"],
+    manifests = [
+        "//:Cargo.toml",
+        "//:crates/greeter/greeter-grpc/Cargo.toml",
+        "//:crates/greeter/greeter/Cargo.toml",
+    ],
 )
 
 load("@cargo_workspace//:defs.bzl", "crate_repositories")
