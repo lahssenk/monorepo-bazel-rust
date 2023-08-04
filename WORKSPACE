@@ -26,9 +26,9 @@ crate_universe_dependencies()
 load("@rules_rust//crate_universe:defs.bzl", "crates_repository")
 
 crates_repository(
-    name = "cargo_workspace",
-    cargo_lockfile = "//:Cargo.lock",
-    lockfile = "//:Cargo.Bazel.lock",
+    name = "crate_index",
+    cargo_lockfile = "//:Cargo.Bazel.lock",
+    lockfile = "//:cargo-bazel-lock.json",
     manifests = [
         "//:Cargo.toml",
         "//:crates/greeter/greeter-grpc/Cargo.toml",
@@ -36,7 +36,7 @@ crates_repository(
     ],
 )
 
-load("@cargo_workspace//:defs.bzl", "crate_repositories")
+load("@crate_index//:defs.bzl", "crate_repositories")
 
 # dowload all external dependencies read from Cargo workspace
 crate_repositories()
@@ -44,7 +44,7 @@ crate_repositories()
 # when external dependencies are added or new crates created
 # update the Cargo.Bazel.lock with command:
 #
-# CARGO_BAZEL_REPIN=1 bazel sync --only=cargo_workspace
+# CARGO_BAZEL_REPIN=1 bazel sync --only=crate_index
 
 # inspect the result of a BUILD.bazel rust target when crates_universe is used for
 # generating the list of dependencies, src files etc with command:

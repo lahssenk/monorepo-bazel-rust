@@ -1,8 +1,8 @@
-load("@cargo_workspace//:defs.bzl", "aliases", "all_crate_deps")
+load("@crate_index//:defs.bzl", "aliases", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
-    name = "greeter_lib",
+    name = "greeter",
     srcs = glob([
         "src/**/*.rs",
     ]),
@@ -18,7 +18,7 @@ rust_library(
 
 rust_test(
     name = "greeter_unit_test",
-    crate = ":greeter_lib",
+    crate = ":greeter",
     aliases = aliases(
         normal_dev = True,
         proc_macro_dev = True,
@@ -40,7 +40,7 @@ rust_binary(
     #The list of src files it needs (just main.rs)
     srcs = ["src/main.rs"],
     #Any libraries/crates it depends on, for now we'll leave this blank
-    deps = [":greeter_lib"],
+    deps = [":greeter"],
     #The crate_root file, this would default to main.rs but we put it in for clarity
     crate_root = "src/main.rs",
 )

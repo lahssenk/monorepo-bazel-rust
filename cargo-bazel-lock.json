@@ -1,0 +1,51 @@
+{
+  "checksum": "9f7105671d9540a1dda69a678acc34806de682d7cff66938533100757882040d",
+  "crates": {
+    "greeter 0.1.0": {
+      "name": "greeter",
+      "version": "0.1.0",
+      "repository": null,
+      "targets": [
+        {
+          "Library": {
+            "crate_name": "greeter",
+            "crate_root": "src/lib.rs",
+            "srcs": [
+              "**/*.rs"
+            ]
+          }
+        }
+      ],
+      "library_target_name": "greeter",
+      "common_attrs": {
+        "compile_data_glob": [
+          "**"
+        ],
+        "edition": "2021",
+        "version": "0.1.0"
+      },
+      "license": null
+    },
+    "greeter-grpc 0.1.0": {
+      "name": "greeter-grpc",
+      "version": "0.1.0",
+      "repository": null,
+      "targets": [],
+      "library_target_name": null,
+      "common_attrs": {
+        "compile_data_glob": [
+          "**"
+        ],
+        "edition": "2021",
+        "version": "0.1.0"
+      },
+      "license": null
+    }
+  },
+  "binary_crates": [],
+  "workspace_members": {
+    "greeter 0.1.0": "crates/greeter/greeter",
+    "greeter-grpc 0.1.0": "crates/greeter/greeter-grpc"
+  },
+  "conditions": {}
+}

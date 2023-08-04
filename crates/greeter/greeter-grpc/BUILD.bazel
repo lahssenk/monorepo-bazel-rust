@@ -1,15 +1,15 @@
-load("@cargo_workspace//:defs.bzl", "aliases", "all_crate_deps")
+load("@crate_index//:defs.bzl", "aliases", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
-    name = "greeter_grpc_lib",
+    name = "greeter_grpc",
     srcs = glob([
         "src/**/*.rs",
     ]),
     aliases = aliases(),
-    deps = ["//crates/greeter/greeter:greeter_lib"] + all_crate_deps(
+    deps = all_crate_deps(
         normal = True,
-    ),
+    ) + ["//crates/greeter/greeter:greeter"],
     proc_macro_deps = all_crate_deps(
         proc_macro = True,
     ),
@@ -18,14 +18,14 @@ rust_library(
 
 rust_test(
     name = "greeter_grpc_unit_test",
-    crate = ":greeter_grpc_lib",
+    crate = ":greeter_grpc",
     aliases = aliases(
         normal_dev = True,
         proc_macro_dev = True,
     ),
-    deps = ["//crates/greeter/greeter:greeter_lib"] + all_crate_deps(
+    deps = all_crate_deps(
         normal_dev = True,
-    ),
+    ) + ["//crates/greeter/greeter:greeter"],
     proc_macro_deps = all_crate_deps(
         proc_macro_dev = True,
     ),
@@ -40,7 +40,7 @@ rust_binary(
     #The list of src files it needs (just main.rs)
     srcs = ["src/main.rs"],
     #Any libraries/crates it depends on, for now we'll leave this blank
-    deps = [":greeter_grpc_lib"],
+    deps = ["//crates/greeter/greeter",":greeter_grpc"],
     #The crate_root file, this would default to main.rs but we put it in for clarity
     crate_root = "src/main.rs",
 )

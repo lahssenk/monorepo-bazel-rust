@@ -1,0 +1,1 @@
+bazel setup with crate_universe does not seem to resolve local workspace crate greeter
